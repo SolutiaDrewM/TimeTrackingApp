@@ -1,5 +1,5 @@
 .login-background {
-    background-color: #B9B9B951;
+    background-color: #81818151;
     width: 100%;
     height: 100%;
     display: flex;
@@ -8,6 +8,6 @@
 }
 
 .login-container {
-    width: 45%;
+    width: 35%;
     height:auto;
 }

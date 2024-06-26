@@ -18,9 +18,16 @@ input[type="text"] {
     border: none;
     border-bottom: 0.3vh solid black;
     outline: none;
+    font-size: 1rem;
+    transition: background-color 0.3s;
 }
 
 input[type="text"]:focus {
     outline: none;
     border-bottom-color: black;
+    background-color: #6819b721;
+}
+
+input[type="text"]:hover {
+    background-color: #7c14c150;
 }
