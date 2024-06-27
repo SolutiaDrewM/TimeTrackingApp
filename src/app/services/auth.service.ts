@@ -19,10 +19,8 @@ export class AuthService {
     let isLoggedIn: boolean;
     let flag: String | null = localStorage.getItem('isLoggedIn');
     if(flag === "true") {
-      console.log(`isLoggedIn is set to: ${flag}`);
       return true;
     } else if(flag === "false") {
-      console.log(`isLoggedIn is set to: ${flag}`);
       return false
     } else {
       console.log(`isLoggedIn is set to: ${flag}`);
