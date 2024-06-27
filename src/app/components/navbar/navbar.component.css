@@ -46,11 +46,11 @@ a {
 }
 
 .nav-pages a:hover::after {
-    width: 95%;
+    width: 80%;
 }
 
 .nav-pages a.active-link::after {
-    width: 95%;
+    width: 80%;
 }
 
 

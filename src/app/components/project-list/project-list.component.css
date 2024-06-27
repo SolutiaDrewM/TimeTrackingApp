@@ -3,3 +3,34 @@
     flex-direction: column;
     justify-content: space-between;
 }
+
+.project-list-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position:relative;
+}
+
+.project-list-title-text {
+    position: relative;
+    padding: 0 20px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.project-list-title-text::before,
+.project-list-title-text::after {
+    content: '';
+    flex: 1;
+    border-bottom: 2px solid black;
+    margin: 0 10px;
+    position: absolute;
+}
+
+.project-list-title-text::before {
+    margin-right: 10px;
+}
+
+.project-list-title-text::after {
+    margin-left: 10px;
+}
