@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { ProjectItemComponent } from './components/project-item/project-item.component';
+import { ProjectListComponent } from './components/project-list/project-list.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, LoginComponent, ProjectItemComponent],
+  imports: [RouterOutlet, LoginComponent, ProjectItemComponent, ProjectListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

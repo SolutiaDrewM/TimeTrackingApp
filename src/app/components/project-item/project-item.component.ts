@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Project } from '../../interfaces/project';
 
 @Component({
   selector: 'app-project-item',
@@ -8,5 +9,13 @@ import { Component } from '@angular/core';
   styleUrl: './project-item.component.css'
 })
 export class ProjectItemComponent {
+  isSelected: boolean = false;
+  @Input() project!: Project;
 
+  constructor() {
+  }
+
+  ngOnInit()
+  {
+  }
 }
