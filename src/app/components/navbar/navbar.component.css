@@ -1,0 +1,12 @@
+nav {
+    background-color: #9C52E5;
+    color: white;
+    padding: 1vh;
+    display: flex;
+    justify-content: flex-start;
+}
+
+nav a {
+    text-decoration: none;
+    padding-right: 5vh;
+}
