@@ -1,6 +1,10 @@
 <nav>
-    <a routerLink="/projects">Projects</a>
-    <a routerLink="/time-entry">Time Entry</a>
-    <a routerLink="/time-input">Time Input</a>
-    <button (click)="logout()">Logout</button>
+    <div class="nav-pages">
+        <a routerLink="projects" routerLinkActive="active-link">Projects</a>
+        <a routerLink="time-entry" routerLinkActive="active-link">Time Entry</a>
+        <a routerLink="time-input" routerLinkActive="active-link">Time Input</a>
+    </div>
+    <div class="nav-functions">
+        <button (click)="logout()">Logout</button>
+    </div>
 </nav>

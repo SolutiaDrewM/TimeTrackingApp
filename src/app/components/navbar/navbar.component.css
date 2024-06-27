@@ -1,0 +1,74 @@
+nav {
+    background-color: #9C52E5;
+    padding: 1vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-pages {
+    display: flex;
+    justify-content: flex-start;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+    margin-left: 3vh;
+    margin-right: 3vh;
+    font-size: 1.5rem;
+    text-align: center;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-pages a:hover{
+    background-color: #FFFFFF40;
+    position: relative;
+}
+
+.nav-pages a.active-link{
+    position: relative;
+}
+
+.nav-pages a::after {
+    content: '';
+    position:absolute;
+    left: 50%;
+    bottom: 3px;
+    width: 0;
+    height: 3px;
+    background-color: #fff;
+    transition: width 0.3s ease, left 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-pages a:hover::after {
+    width: 95%;
+}
+
+.nav-pages a.active-link::after {
+    width: 95%;
+}
+
+
+/*Right side of nav bar, which has logout button
+as well as username and role information*/
+.nav-functions{
+    display: flex;
+    flex-direction: column;
+}
+nav button {
+    background-color: white;
+    color: #9C52E5;
+    padding: 10px;
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 10px;
+    float: right;
+}
+nav button:hover {
+    background-color: lightgray;
+}
