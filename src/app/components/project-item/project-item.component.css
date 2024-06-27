@@ -1,0 +1,19 @@
+.project-item {
+    background-color: #787878;
+    border-radius: 15px;
+    padding: 1.5vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 10vh;
+    margin-bottom: 2vh;
+}
+
+.project-item-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.project-item .selected {
+    border-color: 3px solid #9C52E5;
+}
