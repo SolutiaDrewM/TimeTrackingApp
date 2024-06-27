@@ -1,10 +1,19 @@
-<div class="login">
-    <div class="login-title">
-        <h1>Time Tracking App</h1>
+<div class="login-background">
+    <div class="login-container">
+        <div class="login">
+            <div class="login-title">
+                <h1>Time Tracking App</h1>
+            </div>
+            <!--Username Input Box-->
+            <input type="text" placeholder="Username" [(ngModel)]="username"/>
+            <!--Password Input Box-->
+            <input type="text" placeholder="Password" [(ngModel)]="password"/>    
+            <button mat-flat-button 
+            style="background-color: #9C52E5; font-size: 1.5rem; color: white;" 
+            class="btn login-btn"
+            (click)="login(username, password)">Login</button>
+        </div>
     </div>
-    <!--Username Input Box-->
-    <input type="text" placeholder="Username"/>
-    <!--Password Input Box-->
-    <input type="text" placeholder="Password"/>    
-    <button mat-flat-button style="background-color: #9C52E5; font-size: 1.5rem; color: white;" class="btn login-btn">Login</button>
 </div>
+
+
