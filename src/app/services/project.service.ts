@@ -29,6 +29,16 @@ export class ProjectService {
         hours: 48,
         description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor corporis dolore..."
       },
+      {
+        title: "Project 5",
+        hours: 5,
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor corporis dolore..."
+      },
+      {
+        title: "Project 6",
+        hours: 48,
+        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor corporis dolore..."
+      },
     ]
   }
 

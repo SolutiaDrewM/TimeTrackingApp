@@ -8,29 +8,25 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    position:relative;
+    padding: 1vh;
+    padding-bottom: 3vh;
 }
 
 .project-list-title-text {
-    position: relative;
     padding: 0 20px;
-    font-size: 24px;
+    font-size: 2rem;
     text-align: center;
 }
 
-.project-list-title-text::before,
-.project-list-title-text::after {
-    content: '';
-    flex: 1;
-    border-bottom: 2px solid black;
+.line {
+    flex-grow: 1;
+    border: none;
+    border-top: 3px solid black;
     margin: 0 10px;
-    position: absolute;
 }
 
-.project-list-title-text::before {
-    margin-right: 10px;
-}
-
-.project-list-title-text::after {
-    margin-left: 10px;
+.project-list-items {
+    max-height: 60vh;
+    overflow-y: auto;
+    padding: 15px;
 }
