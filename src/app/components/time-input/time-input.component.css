@@ -8,15 +8,16 @@
 .time-input-content {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
     height: 65vh;
     width: 60vw;
-    border: 1px solid red;
 }
 
+/* Project Input Box and the Dropdown*/
 .project {
     display: flex;
     position: relative;
+    justify-content: space-between;
 }
 
 .project-title {
@@ -27,6 +28,7 @@
     display: flex;
     align-items: center;
     position: relative;
+    width: 60%;
 }
 
 input[type="text"] {
@@ -45,9 +47,9 @@ input[type="text"] {
 .suggestions-list {
     position: absolute;
     top: 100%;
-    left: 20%;
-    right: 20%;
-    border: 1px solid red;
+    left: 40%;
+    right: 5%;
+    border: 1px solid #9C52E521;
     border-radius: 10px;
     border-top: none;
     background-color: #ececec;
@@ -62,3 +64,14 @@ input[type="text"] {
 .suggestions-list div:hover {
     background-color: #9C52E521;
 }
+
+/* END of Project Input Box */
+
+
+
+.task-title, .time-title {
+    font-size: 1.5rem;
+    text-wrap: none;
+}
+
+
