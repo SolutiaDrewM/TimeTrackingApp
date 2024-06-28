@@ -4,6 +4,7 @@ import { Project } from '../../interfaces/project';
 import { ProjectService } from '../../services/project.service';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MatButton, MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-time-input',
@@ -13,6 +14,7 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule,
     CommonModule,
     MatFormField,
+    MatButtonModule
   ],
   templateUrl: './time-input.component.html',
   styleUrl: './time-input.component.css'
@@ -55,15 +57,19 @@ export class TimeInputComponent {
     console.log('Form Data: ', this.taskForm.value);
   }
 
-  getTitleInput() {
-    
+  getTitleInput(): string {
+    return this.taskForm.value.title;
+  }
+
+  setTitleInput(title: string) {
+    this.taskForm.value.title = title;
   }
 
   //Functions for the dropdown menu
   showSuggestions(): void {
-    if (this.titleInputValue) {
+    if (this.getTitleInput()) {
       this.filteredTitles = this.projectTitles.filter(title =>
-        title.toLowerCase().includes(this.titleInputValue.toLowerCase())
+        title.toLowerCase().includes(this.getTitleInput().toLowerCase())
       );
       this.dropdownVisible = true;
     } else {
@@ -71,9 +77,14 @@ export class TimeInputComponent {
     }
   }
 
+  /**
+   * There are two titles being set here
+   * This is because we need to set the text of the input box
+   * as well as setting the title stored in the form group
+   */
   selectOption(option: string): void {
+    this.setTitleInput(option);
     this.titleInputValue = option;
-    this.filteredTitles = [];
     this.dropdownVisible = false;
   }
 

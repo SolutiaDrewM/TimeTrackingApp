@@ -5,7 +5,16 @@
             <div class="project">
                 <div class="project-title"><label for="autocomplete">Project: </label></div>
                 <div class="input-wrapper">
-                    <input type="text" id="autocomplete" name="autocomplete" [(ngModel)]="titleInputValue" (input)="showSuggestions()" autocomplete="off" formControlName="title"/>
+                    <input type="text" 
+                        id="autocomplete" 
+                        name="autocomplete" 
+                        placeholder="Title of project"
+                        [(ngModel)]="titleInputValue"
+                        (input)="showSuggestions()" 
+                        autocomplete="off" 
+                        formControlName="title"
+                    />
+
                     <button type="button" class="toggle-button" (click)="toggleDropdown()">&#9662;</button>
                 </div>
                 <div id="suggestions" class="suggestions-list" *ngIf="filteredTitles.length  && dropdownVisible">
