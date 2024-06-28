@@ -1,1 +1,34 @@
-<p>time-input works!</p>
+<div class="time-input-container">
+    <div class="time-input-content">
+        <!--Time Input Form-->
+        <div class="project">
+            <div class="project-title">Project: </div>
+            <div class="input-wrapper">
+                <input type="text" id="autocomplete" name="autocomplete" [(ngModel)]="titleInputValue" (input)="showSuggestions()" autocomplete="off"/>
+                <button type="button" class="toggle-button" (click)="toggleDropdown()">&#9662;</button>
+            </div>
+            <div id="suggestions" class="suggestions-list" *ngIf="filteredTitles.length  && dropdownVisible">
+                <div *ngFor="let option of filteredTitles" (click)="selectOption(option)">
+                    {{ option }}
+                </div>
+            </div>
+        </div>
+        <div class="task-completed">
+            <div class="project-title">Task Completed: </div>
+            <input type="text"/>
+        </div>
+        <div class="time-dedicated"></div>
+        <button>Submit Time</button>
+    </div>
+</div>
+
+<!--
+Angular Materials Way
+<mat-form-field>
+    <mat-label>Select</mat-label>
+        <mat-select>
+            <mat-option value="one">First option</mat-option>
+            <mat-option value="two">Second option</mat-option>
+        </mat-select>
+</mat-form-field>
+-->
