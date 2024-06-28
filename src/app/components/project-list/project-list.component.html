@@ -1,3 +1,10 @@
 <div class="project-list">
-    <app-project-item *ngFor="let project of projects" [project]="project"></app-project-item>
+    <div class="project-list-title">
+        <hr class="line">
+        <span class="project-list-title-text">Project List</span>
+        <hr class="line">
+    </div>
+    <div class="project-list-items">
+        <app-project-item *ngFor="let project of projects" [project]="project"></app-project-item>
+    </div>
 </div>

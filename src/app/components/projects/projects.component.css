@@ -1,5 +1,14 @@
-.project-list-container {
+
+
+.project-page-container {
     display: flex;
     align-items: center;
     justify-content: center;
+    min-height: 95vh;
 }
+
+.project-list-container {
+    width: 40%;
+    height: auto;
+}
+
