@@ -45,4 +45,19 @@ export class ProjectService {
   getProjects() {
     return this.projects
   }
+
+  addProject(inTitle: string, inHours: number, inDescription: string) {
+    this.projects.concat({
+      title: inTitle,
+      hours: inHours,
+      description: inDescription
+    })
+
+    //post to database
+    
+  }
+
+  deleteProject(project: Project) {
+
+  }
 }
