@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Project } from '../../interfaces/project';
 import { NgForOf } from '@angular/common';
+import { SelectedProjectService } from '../../services/selected-project.service';
 
 @Component({
   selector: 'app-project-item',
@@ -9,14 +10,20 @@ import { NgForOf } from '@angular/common';
   templateUrl: './project-item.component.html',
   styleUrl: './project-item.component.css'
 })
-export class ProjectItemComponent {
-  isSelected: boolean = false;
+export class ProjectItemComponent implements OnInit {
+  selected: boolean = false;
   @Input() project!: Project;
 
-  constructor() {
+  constructor(private selectedProjectService: SelectedProjectService) {
   }
 
-  ngOnInit()
-  {
+  ngOnInit(): void {
+    this.selectedProjectService.selectedProject$.subscribe(selectedProject => {
+      this.selected = this.project.title === selectedProject;
+    })
+  }
+
+  selectProject(): void {
+    this.selectedProjectService.selectProject(this.project.title);
   }
 }

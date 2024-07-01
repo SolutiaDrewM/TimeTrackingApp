@@ -1,5 +1,6 @@
 .project-item {
     background-color: #81818151;
+    border: 4px solid rgba(0, 0, 0, 0);
     border-radius: 15px;
     padding: 1.5vh;
     display: flex;
@@ -7,6 +8,16 @@
     justify-content: space-between;
     min-height: 10vh;
     margin-bottom: 2vh;
+    cursor: pointer;
+    transition: border 100ms ease-out;
+}
+
+.project-item.selected {
+    border-color:#9C52E5;
+}
+
+.project-item:hover {
+    border-color:#9C52E540;
 }
 
 .project-item-header {
