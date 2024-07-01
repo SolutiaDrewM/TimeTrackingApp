@@ -3,6 +3,6 @@
         <app-project-list></app-project-list>
     </div>
     <div class="time-entry-container">
-        <app-project-entries></app-project-entries>
+        <app-project-entries *ngIf="selectedProject" [projectTitle]="selectedProject" ></app-project-entries>
     </div>
 </div>
