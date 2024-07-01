@@ -5,7 +5,7 @@
     min-height: 90vh;
 }
 
-.time-input-content {
+form {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
