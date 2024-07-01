@@ -1,0 +1,25 @@
+<div class="create-project-container">
+    <!--Time Input Form-->
+    <form [formGroup]="createProjectForm" (ngSubmit)="onSubmit()">
+        <h1>Create New Project</h1>
+        <div class="project">
+            <label for="title" class="field-title">Project: </label>
+            <input type="text" placeholder="Enter a title for your project" formControlName="title"/>
+        </div>
+        <div class="hours">
+            <label for="hours" class="field-title">Time to complete: </label>
+            <input type="text" placeholder="How many hours?" formControlName="hours"/>
+        </div>
+        <div class="description">
+            <label for="description" class="field-title">Description: </label>
+            <textarea type="text" placeholder="Enter a description of the project here" formControlName="description"></textarea>
+        </div>
+
+        <button mat-flat-button 
+            type="submit"
+            [disabled]="createProjectForm.invalid"
+            style="background-color: #9C52E5; font-size: 1.5rem; color: white;" 
+            class="btn login-btn"
+            >Create New Project</button>
+    </form>
+</div>

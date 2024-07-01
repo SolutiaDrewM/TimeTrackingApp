@@ -1,0 +1,23 @@
+.create-project-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 65vh;
+    width: 60vw;
+}
+
+.field-title {
+    font-size: 2rem;
+}
+
+.hours, .project {
+    display: flex;
+    justify-content: space-between;
+}

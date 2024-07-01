@@ -3,12 +3,17 @@
 .project-page-container {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     min-height: 95vh;
 }
 
 .project-list-container {
-    width: 40%;
+    width: 45%;
     height: auto;
+}
+
+.create-project-container {
+    width: 45%;
+    height:auto;
 }
 
