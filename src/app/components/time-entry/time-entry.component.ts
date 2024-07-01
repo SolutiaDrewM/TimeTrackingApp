@@ -5,6 +5,8 @@ import { ProjectEntriesComponent } from "../project-entries/project-entries.comp
 import { Project } from '../../interfaces/project';
 import { SelectedProjectService } from '../../services/selected-project.service';
 import { NgIf } from '@angular/common';
+import { TimeEntry } from '../../interfaces/time-entry';
+import { TimeEntryService } from '../../services/time-entry.service';
 
 @Component({
     selector: 'app-time-entry',
@@ -19,18 +21,40 @@ import { NgIf } from '@angular/common';
     ]
 })
 export class TimeEntryComponent implements OnInit {
-    selectedProject: string | null = null;
+    selectedProjectTitle: string | null = null;
+    dataSource: TimeEntry[] = [];
 
-    constructor(private selectedProjectService: SelectedProjectService) {}
+    constructor(private selectedProjectService: SelectedProjectService, private timeEntryService: TimeEntryService) {}
 
     ngOnInit(): void {
         this.selectedProjectService.selectedProject$.subscribe(project => {
-            this.selectedProject = project;
-            this.updateProjectEntries();
+            this.selectedProjectTitle = project;
+            this.loadEntries();
         })
+        
+    }   
+    
+    ngOnChanges(): void {
+        this.loadEntries
     }
-
-    updateProjectEntries(): void {
-        //Logic to rerender the ProjectEntriesComponent with the selected project
+    
+    loadEntries(): void {
+        if (this.selectedProjectTitle) {
+            this.timeEntryService.getEntries(this.selectedProjectTitle).subscribe((entries: TimeEntry[]) => {
+                this.dataSource = entries;
+            });
+        }
+    
+        // if title is undefined or null, render the blank gray
+    
+        // else render the title and a table of entries
+    }
+    
+    updateEntry(entry: TimeEntry): void {
+    
+    }
+    
+    deleteEntry(entry: TimeEntry): void {
+    
     }
 }

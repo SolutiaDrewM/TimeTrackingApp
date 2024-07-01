@@ -3,18 +3,18 @@
         <h2>{{projectTitle}}</h2>
     </div>
     <div class="time-entries-container">
-        <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <mat-table [dataSource]="dataSource" class="mat-elevation-z8 mat-table">
             <!--Column Definitions-->
 
             <!-- Username Column -->
             <ng-container matColumnDef="username">
-                <mat-header-cell>Username</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef> Username </mat-header-cell>
                 <mat-cell *matCellDef="let entry">{{entry.username}}</mat-cell>
             </ng-container>
 
             <!-- Hours Column -->
             <ng-container matColumnDef="hours">
-                <mat-header-cell>Hours</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef> Hours </mat-header-cell>
                 <mat-cell *matCellDef="let entry">{{entry.hours}}</mat-cell>
             </ng-container>
 

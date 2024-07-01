@@ -5,6 +5,7 @@ import { MatButton, MatButtonModule, MatIconButton } from '@angular/material/but
 import { TimeEntry } from '../../interfaces/time-entry';
 import { TimeEntryService } from '../../services/time-entry.service';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { Time } from '@angular/common';
 
 @Component({
   selector: 'app-project-entries',
@@ -19,41 +20,21 @@ import { MatIcon, MatIconModule } from '@angular/material/icon';
   templateUrl: './project-entries.component.html',
   styleUrl: './project-entries.component.css'
 })
-export class ProjectEntriesComponent implements OnInit {
+export class ProjectEntriesComponent {
   @Input() projectTitle: string | null | undefined;
+  @Input() dataSource: TimeEntry[] = [];
   displayedColumns: string[] = ['username', 'hours', 'actions'];
-  dataSource: TimeEntry[] = [];
 
   constructor(private timeEntryService: TimeEntryService) {
 
   }
 
-  ngOnInit(): void {
-    this.loadEntries
+  updateEntry(entry: TimeEntry) {
+
   }
 
-  ngOnChanges(): void {
-    this.loadEntries
+  deleteEntry(entry: TimeEntry) {
+
   }
-
-  loadEntries(): void {
-    if (this.projectTitle) {
-      this.timeEntryService.getEntries(this.projectTitle).subscribe((entries: TimeEntry[]) => {
-        this.dataSource = entries;
-      });
-    }
-
-    // if title is undefined or null, render the blank gray
-
-    // else render the title and a table of entries
-  }
-
-updateEntry(entry: TimeEntry): void {
-
-}
-
-deleteEntry(entry: TimeEntry): void {
-
-}
 
 }
