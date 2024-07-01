@@ -24,7 +24,7 @@ import { FormsModule, NgModel } from '@angular/forms';
 export class LoginComponent {
   //TODO make this more secure with get/set and with private
   username: string = '';
-  password: string = ''
+  password: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
 

@@ -37,6 +37,7 @@ export class AuthService {
   //TODO Add output from here or another function defining user role
   //TODO Maybe seperate authenticate and login into seperate functions
   authenticate(username: string, password: string): boolean {
+    
     this.setIsLoggedIn(true);
     return true;
   }

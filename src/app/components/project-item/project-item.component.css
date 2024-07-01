@@ -20,6 +20,10 @@
     border-color:#9C52E540;
 }
 
+.project-item.selected:hover {
+    border-color:#9C52E5;
+}
+
 .project-item-header {
     display: flex;
     justify-content: space-between;
