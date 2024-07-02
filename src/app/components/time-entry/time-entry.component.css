@@ -1,0 +1,16 @@
+.time-entry-page-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    min-height: 95vh;
+}
+
+.project-list-container {
+    width: 45%;
+    height: auto;
+}
+
+.time-entry-container {
+    width: 45%;
+    height: auto;
+}

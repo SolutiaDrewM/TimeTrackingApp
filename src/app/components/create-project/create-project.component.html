@@ -15,11 +15,6 @@
             <textarea type="text" placeholder="Enter a description of the project here" formControlName="description"></textarea>
         </div>
 
-        <button mat-flat-button 
-            type="submit"
-            [disabled]="createProjectForm.invalid"
-            style="background-color: #9C52E5; font-size: 1.5rem; color: white;" 
-            class="btn login-btn"
-            >Create New Project</button>
+        <app-formatted-button [disabled]="createProjectForm.invalid">Create New Project</app-formatted-button>
     </form>
 </div>

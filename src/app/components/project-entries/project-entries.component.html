@@ -1,0 +1,42 @@
+<div class="project-display">
+    
+    <div class="time-entries-container">
+        <div class="project-title">
+            <h2>{{projectTitle}}</h2>
+        </div>
+        <mat-table [dataSource]="dataSource" class="mat-elevation-z8 mat-table">
+            <!--Column Definitions-->
+
+            <!-- Username Column -->
+            <ng-container matColumnDef="username">
+                <mat-header-cell *matHeaderCellDef> Username </mat-header-cell>
+                <mat-cell *matCellDef="let entry">{{entry.username}}</mat-cell>
+            </ng-container>
+
+            <!-- Hours Column -->
+            <ng-container matColumnDef="hours">
+                <mat-header-cell *matHeaderCellDef> Hours </mat-header-cell>
+                <mat-cell *matCellDef="let entry">{{entry.hours}}</mat-cell>
+            </ng-container>
+
+            <!-- Actions Column -->
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+                <mat-cell *matCellDef="let entry">
+                    <button mat-icon-button (click)="updateEntry(entry)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button (click)="deleteEntry(entry)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+    </div>
+    <div class="button-container">
+        <app-formatted-button>Add Time Entry</app-formatted-button>
+    </div>
+</div>

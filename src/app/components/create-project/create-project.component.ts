@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
+import { FormattedButtonComponent } from '../formatted-button/formatted-button.component';
 
 @Component({
   selector: 'app-create-project',
   standalone: true,
-  imports: [MatButton, ReactiveFormsModule],
+  imports: [MatButton, ReactiveFormsModule, FormattedButtonComponent],
   templateUrl: './create-project.component.html',
   styleUrl: './create-project.component.css'
 })

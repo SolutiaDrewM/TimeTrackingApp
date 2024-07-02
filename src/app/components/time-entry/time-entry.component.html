@@ -1,1 +1,8 @@
-<p>time-entry works!</p>
+<div class="time-entry-page-container">
+    <div class="project-list-container">
+        <app-project-list></app-project-list>
+    </div>
+    <div class="time-entry-container">
+        <app-project-entries *ngIf="selectedProjectTitle" [projectTitle]="selectedProjectTitle" [dataSource]="dataSource" ></app-project-entries>
+    </div>
+</div>

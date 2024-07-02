@@ -1,12 +1,60 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ProjectListComponent } from "../project-list/project-list.component";
+import { CreateProjectComponent } from "../create-project/create-project.component";
+import { ProjectEntriesComponent } from "../project-entries/project-entries.component";
+import { Project } from '../../interfaces/project';
+import { SelectedProjectService } from '../../services/selected-project.service';
+import { NgIf } from '@angular/common';
+import { TimeEntry } from '../../interfaces/time-entry';
+import { TimeEntryService } from '../../services/time-entry.service';
 
 @Component({
-  selector: 'app-time-entry',
-  standalone: true,
-  imports: [],
-  templateUrl: './time-entry.component.html',
-  styleUrl: './time-entry.component.css'
+    selector: 'app-time-entry',
+    standalone: true,
+    templateUrl: './time-entry.component.html',
+    styleUrl: './time-entry.component.css',
+    imports: [
+        ProjectListComponent,
+        CreateProjectComponent,
+        ProjectEntriesComponent,
+        NgIf
+    ]
 })
-export class TimeEntryComponent {
+export class TimeEntryComponent implements OnInit {
+    selectedProjectTitle: string | null = null;
+    dataSource: TimeEntry[] = [];
 
+    constructor(private selectedProjectService: SelectedProjectService, private timeEntryService: TimeEntryService) {}
+
+    ngOnInit(): void {
+        this.selectedProjectService.selectedProject$.subscribe(project => {
+            this.selectedProjectTitle = project;
+            this.loadEntries();
+        })
+        
+    }   
+    
+    ngOnChanges(): void {
+        this.loadEntries
+    }
+    
+    loadEntries(): void {
+        if (this.selectedProjectTitle) {
+            this.timeEntryService.getEntries(this.selectedProjectTitle).subscribe((entries: TimeEntry[]) => {
+                this.dataSource = entries;
+            });
+        }
+    
+        // if title is undefined or null, render the blank gray
+    
+        // else render the title and a table of entries
+    }
+    
+    updateEntry(entry: TimeEntry): void {
+    
+    }
+    
+    deleteEntry(entry: TimeEntry): void {
+    
+    }
 }
