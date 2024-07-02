@@ -8,10 +8,7 @@
             <input type="text" placeholder="Username" [(ngModel)]="username"/>
             <!--Password Input Box-->
             <input type="text" placeholder="Password" [(ngModel)]="password"/>    
-            <button mat-flat-button 
-            style="background-color: #9C52E5; font-size: 1.5rem; color: white;" 
-            class="btn login-btn"
-            (click)="login(username, password)">Login</button>
+            <app-formatted-button (buttonClick)="login(username, password)">Login</app-formatted-button>
         </div>
     </div>
 </div>

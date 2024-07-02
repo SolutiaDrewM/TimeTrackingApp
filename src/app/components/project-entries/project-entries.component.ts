@@ -6,6 +6,7 @@ import { TimeEntry } from '../../interfaces/time-entry';
 import { TimeEntryService } from '../../services/time-entry.service';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { Time } from '@angular/common';
+import { FormattedButtonComponent } from '../formatted-button/formatted-button.component';
 
 @Component({
   selector: 'app-project-entries',
@@ -15,7 +16,8 @@ import { Time } from '@angular/common';
     MatHeaderCell,
     MatTableModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    FormattedButtonComponent
     ],
   templateUrl: './project-entries.component.html',
   styleUrl: './project-entries.component.css'

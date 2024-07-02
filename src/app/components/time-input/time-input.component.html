@@ -29,12 +29,7 @@
             <div class="time-title">Time Dedicated: </div>
             <input type="text" placeholder="How many hours did you put into the task?" formControlName="hours"/>
         </div>
-        <button mat-flat-button 
-            type="submit"
-            [disabled]="taskForm.invalid"
-            style="background-color: #9C52E5; font-size: 1.5rem; color: white;" 
-            class="btn login-btn"
-            >Login</button>
+        <app-formatted-button [disabled]="taskForm.invalid">Submit</app-formatted-button>
     </form>
 </div>
 

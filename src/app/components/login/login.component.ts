@@ -1,11 +1,11 @@
 import { Component, NgModule } from '@angular/core';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { TTInputComponent } from '../tt-input/tt-input.component';
 import {MatButtonModule} from '@angular/material/button';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 import { FormsModule, NgModel } from '@angular/forms';
+import { FormattedButtonComponent } from '../formatted-button/formatted-button.component';
 
 
 @Component({
@@ -14,9 +14,9 @@ import { FormsModule, NgModel } from '@angular/forms';
   imports: [
     MatInputModule, 
     MatFormFieldModule, 
-    TTInputComponent,
     MatButtonModule,
-    FormsModule
+    FormsModule,
+    FormattedButtonComponent
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'

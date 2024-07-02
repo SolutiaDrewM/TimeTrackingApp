@@ -1,0 +1,14 @@
+.formatted-button {
+    background-color: #9C52E5;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.formatted-button:hover {
+    background-color: #9C52E560;
+}

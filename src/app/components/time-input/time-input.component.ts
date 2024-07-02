@@ -5,6 +5,7 @@ import { ProjectService } from '../../services/project.service';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatButton, MatButtonModule } from '@angular/material/button';
+import { FormattedButtonComponent } from '../formatted-button/formatted-button.component';
 
 @Component({
   selector: 'app-time-input',
@@ -14,7 +15,8 @@ import { MatButton, MatButtonModule } from '@angular/material/button';
     ReactiveFormsModule,
     CommonModule,
     MatFormField,
-    MatButtonModule
+    MatButtonModule,
+    FormattedButtonComponent
   ],
   templateUrl: './time-input.component.html',
   styleUrl: './time-input.component.css'

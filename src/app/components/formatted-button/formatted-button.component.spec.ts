@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TTInputComponent } from './tt-input.component';
+import { FormattedButtonComponent } from './formatted-button.component';
 
-describe('TTInputComponent', () => {
-  let component: TTInputComponent;
-  let fixture: ComponentFixture<TTInputComponent>;
+describe('FormattedButtonComponent', () => {
+  let component: FormattedButtonComponent;
+  let fixture: ComponentFixture<FormattedButtonComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TTInputComponent]
+      imports: [FormattedButtonComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TTInputComponent);
+    fixture = TestBed.createComponent(FormattedButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,8 +1,9 @@
 <div class="project-display">
-    <div class="project-title">
-        <h2>{{projectTitle}}</h2>
-    </div>
+    
     <div class="time-entries-container">
+        <div class="project-title">
+            <h2>{{projectTitle}}</h2>
+        </div>
         <mat-table [dataSource]="dataSource" class="mat-elevation-z8 mat-table">
             <!--Column Definitions-->
 
@@ -36,6 +37,6 @@
         </mat-table>
     </div>
     <div class="button-container">
-        <button>Add Time Entry</button>
+        <app-formatted-button>Add Time Entry</app-formatted-button>
     </div>
 </div>
