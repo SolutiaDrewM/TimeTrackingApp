@@ -1,63 +1,36 @@
 import { Injectable } from '@angular/core';
 import { Project } from '../interfaces/project';
+import { Observable, map } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
-  private projects: Project[];
+  private apiUrl = 'https://localhost:44338/api/Project'
   
-  constructor() {
-    this.projects = [
-      {
-        title: "Project 1",
-        hours: 20,
-        description: "This project is all about doing angular stuff for funzies"
-      },
-      {
-        title: "Project 2",
-        hours: 125,
-        description: "This project is all about doing angular stuff for funzies"
-      },
-      {
-        title: "Project 3",
-        hours: 5,
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor corporis dolore..."
-      },
-      {
-        title: "Project 4",
-        hours: 48,
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor corporis dolore..."
-      },
-      {
-        title: "Project 5",
-        hours: 5,
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor corporis dolore..."
-      },
-      {
-        title: "Project 6",
-        hours: 48,
-        description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor corporis dolore..."
-      },
-    ]
+  constructor(private http: HttpClient) {}
+
+  getProjects(): Observable<Project[]> {
+    return this.http.get<Project[]>(this.apiUrl);
   }
 
-  getProjects() {
-    return this.projects
+  getProjectTitles(): Observable<string[]> {
+    return this.getProjects().pipe(
+      map(projects => projects.map(project => project.title))
+    );
   }
 
-  addProject(inTitle: string, inHours: number, inDescription: string) {
-    this.projects.concat({
-      title: inTitle,
-      hours: inHours,
-      description: inDescription
-    })
-
+  addProject(project: Project): Observable<Project> {
     //post to database
-    
+    return this.http.post<Project>(this.apiUrl, project);
   }
 
+  updateProject(project: Project) {
+    return null;
+  }
+  
   deleteProject(project: Project) {
-
+    //return this.http.delete<Project>(this.apiUrl, project.projectId);
   }
 }

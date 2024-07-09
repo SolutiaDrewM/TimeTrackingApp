@@ -6,6 +6,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { CommonModule } from '@angular/common';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { FormattedButtonComponent } from '../formatted-button/formatted-button.component';
+import { TimeEntryService } from '../../services/time-entry.service';
 
 @Component({
   selector: 'app-time-input',
@@ -34,10 +35,13 @@ export class TimeInputComponent {
   projectTitle: string = '';
 
 
-  constructor(private projectService: ProjectService, private fb: FormBuilder) {}
+  constructor(
+    private projectService: ProjectService,
+    private timeEntryService: TimeEntryService,
+    private fb: FormBuilder) {}
 
   ngOnInit() {
-    this.projectTitles = this.getProjectTitles();
+    this.getProjectTitles();
     this.filteredTitles = this.projectTitles;
     this.taskForm = this.fb.group({
       title: ['', Validators.required],
@@ -46,16 +50,36 @@ export class TimeInputComponent {
     })
   }
 
-  getProjectTitles(): string[] {
-    return this.projectService.getProjects().map(project => project.title);
-
-    //For later use of an observable
-    /*this.myService.getItems().subscribe(items => {
-      this.items = items;
-    }); */
+  //TODO, Make this not use the deprecated stuff
+  getProjectTitles() {
+    this.projectService.getProjectTitles().subscribe(
+      (titles: string[]) => {
+        this.projectTitles = titles;
+      },
+      (error) => {
+        console.error('Error fetching project titles', error);
+      }
+    );
   }
 
   onSubmit(): void {
+    let form = this.taskForm.value;
+    this.timeEntryService.addEntry(
+      form.title,
+      form.task,
+      1, // Just assigning it to admin for now until I add roles 
+      form.hours
+    ).subscribe({
+      next: () => {
+        this.taskForm.reset();
+      },
+      error: (error) => {
+        alert('The form was not submitted');
+        console.error(error);
+      }
+    })
+
+
     console.log('Form Data: ', this.taskForm.value);
   }
 

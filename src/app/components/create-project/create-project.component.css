@@ -17,7 +17,7 @@ form {
     font-size: 2rem;
 }
 
-.hours, .project {
+.totalHours, .project {
     display: flex;
     justify-content: space-between;
 }

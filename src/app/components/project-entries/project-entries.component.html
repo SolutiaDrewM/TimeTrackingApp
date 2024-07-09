@@ -10,7 +10,7 @@
                 <!-- Username Column -->
                 <ng-container matColumnDef="username">
                     <mat-header-cell *matHeaderCellDef> Username </mat-header-cell>
-                    <mat-cell *matCellDef="let entry">{{entry.username}}</mat-cell>
+                    <mat-cell *matCellDef="let entry">{{entry.user.username}}</mat-cell>
                 </ng-container>
     
                 <!-- Hours Column -->
@@ -39,6 +39,6 @@
     </div>
     
     <div class="button-container">
-        <app-formatted-button>Add Time Entry</app-formatted-button>
+        <app-formatted-button (buttonClick)="navigateToInput()">Add Time Entry</app-formatted-button>
     </div>
 </div>
