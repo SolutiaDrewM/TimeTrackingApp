@@ -17,14 +17,10 @@ export class ProjectListComponent {
   constructor(private projectService: ProjectService) {}
 
   ngOnInit() {
-    this.projects = this.getProjects();
+    this.getProjects();
   }
 
   getProjects() {
-    return this.projectService.getProjects();
-    //For later use of an observable
-    /*this.myService.getItems().subscribe(items => {
-      this.items = items;
-    }); */
+    return this.projectService.getProjects().subscribe(projects => this.projects = projects);
   }
 }

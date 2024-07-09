@@ -1,68 +1,30 @@
 import { Injectable } from '@angular/core';
 import { TimeEntry } from '../interfaces/time-entry';
-import { Observable, of } from 'rxjs';
+import { Observable, map, of, switchMap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Project } from '../interfaces/project';
+import { Time } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TimeEntryService {
+  private apiUrl = 'https://localhost:44338/api/Task'
+  private projectApiUrl = 'https://localhost:44338/api/Project'
 
-  entries: TimeEntry[] = [
-    {
-      id: 1,
-      projectTitle: 'Project 1',
-      username: 'drewmore',
-      hours: 4
-    },
-    {
-      id: 2,
-      projectTitle: 'Project 2',
-      username: 'billybob',
-      hours: 6
-    },
-    {
-      id: 3,
-      projectTitle: 'Project 3',
-      username: 'drewmore2',
-      hours: 7
-    },
-    {
-      id: 4,
-      projectTitle: 'Project 1',
-      username: 'drewmore',
-      hours: 8
-    },
-    {
-      id: 5,
-      projectTitle: 'Project 5',
-      username: 'drewmore',
-      hours: 6
-    },
-    {
-      id: 6,
-      projectTitle: 'Project 1',
-      username: 'jimmy',
-      hours: 6
-    },
-    {
-      id: 7,
-      projectTitle: 'Project 1',
-      username: 'billybob',
-      hours: 6
-    },
-    {
-      id: 8,
-      projectTitle: 'Project 2',
-      username: 'drewmore',
-      hours: 6
-    },
-  ];
+  constructor(private http: HttpClient) {}
 
-  constructor() {
+  getProjectByTitle(title: string): Observable<Project> {
+    return this.http.get<Project>(`${this.projectApiUrl}/title/${title}`);
   }
 
   getEntries(projectTitle: string): Observable<TimeEntry[]> {
-    return of(this.entries.filter(entry => entry.projectTitle === projectTitle));
+    //Get the project Id from the title
+    //Return observable with time entries from that project Id
+    return this.getProjectByTitle(projectTitle).pipe(
+      switchMap(project => this.http.get<TimeEntry[]>(`${this.apiUrl}/projectId/${project.projectId}`))
+    );
+
   }
 
   updateEntry(id: number, projectTitle: string, username: string, hours: number) {
@@ -73,12 +35,24 @@ export class TimeEntryService {
     //logic to delete entry at id
   }
 
-  createTimeEntry(projectTitle: string, username: string, hours: number) {
-    this.entries.concat({
-      id: 134,
-      projectTitle: projectTitle,
-      username: username,
-      hours: hours
-    })
+  //TODO Add in description
+  addEntry(projectTitle: string, title: string, userId: number, hours: number): Observable<TimeEntry> {
+    return this.getProjectByTitle(projectTitle).pipe(
+      map(project => project.projectId),
+      switchMap(projectId => {
+        const newTimeEntry: TimeEntry = {
+          taskId: 0,
+          projectId: projectId,
+          userId: userId,
+          title: title,
+          description: "",
+          hours: hours,
+          User: null
+        };
+        return this.http.post<TimeEntry>(this.apiUrl, newTimeEntry);
+      })
+    );
+    
+    
   }
 }

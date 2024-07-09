@@ -1,5 +1,6 @@
 export interface Project {
+    projectId: number;
     title: string;
-    hours: number;
+    totalHours: number;
     description: string;
 }

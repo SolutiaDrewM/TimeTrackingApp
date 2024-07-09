@@ -1,6 +1,9 @@
 export interface TimeEntry {
-    id: number,
-    projectTitle: string,
-    username: string,
+    taskId: number,
+    projectId: number,
+    userId: number,
+    title: string,
     hours: number,
+    description: string,
+    User: {} | null,
 }
