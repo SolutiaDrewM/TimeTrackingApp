@@ -31,8 +31,8 @@ export class TimeEntryService {
     //logic to update this entry 
   }
 
-  deleteEntry(id: number) {
-    //logic to delete entry at id
+  deleteEntry(taskId: number): Observable<TimeEntry> {
+    return this.http.delete<TimeEntry>(`${this.apiUrl}/${taskId}`);
   }
 
   //TODO Add in description

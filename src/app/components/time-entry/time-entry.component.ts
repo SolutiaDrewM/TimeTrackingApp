@@ -55,6 +55,8 @@ export class TimeEntryComponent implements OnInit {
     }
     
     deleteEntry(entry: TimeEntry): void {
-    
+        this.timeEntryService.deleteEntry(entry.taskId).subscribe(() => {
+            this.loadEntries(); //refresh list after deletion
+        })
     }
 }

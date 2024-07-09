@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatHeaderCell, MatTable, MatTableModule } from '@angular/material/table';
 import { Project } from '../../interfaces/project';
 import { MatButton, MatButtonModule, MatIconButton } from '@angular/material/button';
@@ -26,6 +26,8 @@ import { Router, RouterModule } from '@angular/router';
 export class ProjectEntriesComponent {
   @Input() projectTitle: string | null | undefined;
   @Input() dataSource: TimeEntry[] = [];
+  @Output() deleteEntryEvent = new EventEmitter<TimeEntry>();
+  @Output() updateEntryEvent = new EventEmitter<TimeEntry>();
   displayedColumns: string[] = ['username', 'hours', 'actions'];
 
   constructor(private timeEntryService: TimeEntryService, private router: Router) {
@@ -34,10 +36,11 @@ export class ProjectEntriesComponent {
 
   updateEntry(entry: TimeEntry) {
     //Submiting the inputs for the update
+    console.log(entry);
   }
 
   deleteEntry(entry: TimeEntry) {
-    
+    this.deleteEntryEvent.emit(entry);
   }
 
   navigateToInput() {

@@ -3,6 +3,11 @@
         <app-project-list></app-project-list>
     </div>
     <div class="time-entry-container">
-        <app-project-entries *ngIf="selectedProjectTitle" [projectTitle]="selectedProjectTitle" [dataSource]="dataSource" ></app-project-entries>
+        <app-project-entries 
+        *ngIf="selectedProjectTitle" 
+        [projectTitle]="selectedProjectTitle" 
+        [dataSource]="dataSource" 
+        (deleteEntryEvent)="deleteEntry($event)"
+        ></app-project-entries>
     </div>
 </div>
