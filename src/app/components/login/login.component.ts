@@ -30,11 +30,17 @@ export class LoginComponent {
 
 
   login(username: string, password: string) {
-    if(this.userService.authenticate(username, password)) {
-      this.router.navigate(['/projects'])
-    } else {
-      console.log("Authentication Failed, user did not log in");
-    }
-
+    
+    this.userService.authenticate(username, password)
+    .subscribe({
+      next: (response) => {
+        if(response) {
+          this.router.navigate(['/projects'])
+        } else {
+          alert("Authentication Failed, user did not log in");
+        }
+      }
+        
+    });
   }
 }
