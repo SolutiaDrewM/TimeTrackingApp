@@ -1,0 +1,24 @@
+<div class="dialog-container">
+    <h1 mat-dialog-title>Update Task Information</h1>
+    <div mat-dialog-content>
+        <form [formGroup]="updateForm">
+            <mat-form-field appearance="fill">
+                <mat-label>Task Title: </mat-label>
+                <input matInput formControlName="taskTitle">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Task Description: </mat-label>
+                <textarea matInput formControlName="taskDescription"></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Hours Spent: </mat-label>
+                <input matInput formControlName="taskHours">
+            </mat-form-field>
+        </form>
+    </div>
+    <div mat-dialog-actions class="action-buttons">
+        <app-formatted-button (buttonClick)="onCancel()">Cancel</app-formatted-button>
+        <app-formatted-button (buttonClick)="onSave()">Save</app-formatted-button>
+    </div>
+</div>
+

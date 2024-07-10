@@ -24,7 +24,10 @@ export class TimeEntryComponent implements OnInit {
     selectedProjectTitle: string | null = null;
     dataSource: TimeEntry[] = [];
 
-    constructor(private selectedProjectService: SelectedProjectService, private timeEntryService: TimeEntryService) {}
+    constructor(
+        private selectedProjectService: SelectedProjectService, 
+        private timeEntryService: TimeEntryService
+    ) {}
 
     ngOnInit(): void {
         this.selectedProjectService.selectedProject$.subscribe(project => {
@@ -51,10 +54,19 @@ export class TimeEntryComponent implements OnInit {
     }
     
     updateEntry(entry: TimeEntry): void {
-    
+        this.timeEntryService.updateEntry(entry).subscribe({
+            next: (response) => {
+                this.loadEntries();
+            },
+            error: (error) => {
+                alert('The entry was not updated succesfully');
+            }
+        })
     }
     
     deleteEntry(entry: TimeEntry): void {
-    
+        this.timeEntryService.deleteEntry(entry.taskId).subscribe(() => {
+            this.loadEntries(); //refresh list after deletion
+        })
     }
 }
