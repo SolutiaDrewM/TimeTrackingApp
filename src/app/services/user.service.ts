@@ -1,17 +1,20 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class UserService {
+
+  private apiUrl = 'https://localhost:44338/api/User'
 
   //private isLoggedIn: boolean = false;
   
-  constructor() {
+  constructor(private http: HttpClient) {
     if(localStorage.getItem('isLoggedIn') === null) {
       this.setIsLoggedIn(false);
     }
-    //this.logout();
+    this.logout();
   }
 
   //May not actually need this but well see
@@ -38,6 +41,7 @@ export class AuthService {
   //TODO Maybe seperate authenticate and login into seperate functions
   authenticate(username: string, password: string): boolean {
     
+
     this.setIsLoggedIn(true);
     return true;
   }
