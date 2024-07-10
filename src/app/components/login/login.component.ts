@@ -2,7 +2,7 @@ import { Component, NgModule } from '@angular/core';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
-import { AuthService } from '../../services/auth.service';
+import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { FormsModule, NgModel } from '@angular/forms';
 import { FormattedButtonComponent } from '../formatted-button/formatted-button.component';
@@ -26,15 +26,21 @@ export class LoginComponent {
   username: string = '';
   password: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private userService: UserService, private router: Router) {}
 
 
   login(username: string, password: string) {
-    if(this.authService.authenticate(username, password)) {
-      this.router.navigate(['/projects'])
-    } else {
-      console.log("Authentication Failed, user did not log in");
-    }
-
+    
+    this.userService.authenticate(username, password)
+    .subscribe({
+      next: (response) => {
+        if(response) {
+          this.router.navigate(['/projects'])
+        } else {
+          alert("Authentication Failed, user did not log in");
+        }
+      }
+        
+    });
   }
 }

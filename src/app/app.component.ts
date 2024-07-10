@@ -5,7 +5,7 @@ import { ProjectItemComponent } from './components/project-item/project-item.com
 import { ProjectListComponent } from './components/project-list/project-list.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CommonModule } from '@angular/common';
-import { AuthService } from './services/auth.service';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -23,5 +23,5 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent {
   title = 'time-tracking-app';
-  constructor(public authService: AuthService) {}
+  constructor(public userService: UserService) {}
 }
