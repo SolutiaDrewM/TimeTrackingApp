@@ -7,6 +7,7 @@
         *ngIf="selectedProjectTitle" 
         [projectTitle]="selectedProjectTitle" 
         [dataSource]="dataSource" 
+        (updateEntryEvent)="updateEntry($event)"
         (deleteEntryEvent)="deleteEntry($event)"
         ></app-project-entries>
     </div>

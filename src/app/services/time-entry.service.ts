@@ -27,8 +27,8 @@ export class TimeEntryService {
 
   }
 
-  updateEntry(id: number, projectTitle: string, username: string, hours: number) {
-    //logic to update this entry 
+  updateEntry(taskData: any): Observable<TimeEntry> {
+    return this.http.put<TimeEntry>(this.apiUrl, taskData)
   }
 
   deleteEntry(taskId: number): Observable<TimeEntry> {
