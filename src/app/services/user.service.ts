@@ -10,6 +10,9 @@ export class UserService {
   private apiUrl = 'https://localhost:44338/api/User'
 
   private isLoggedIn: boolean = false;
+  public username: string = "";
+  public role: string = ""
+
   
   constructor(private http: HttpClient) {
     if(localStorage.getItem('isLoggedIn') === null) {

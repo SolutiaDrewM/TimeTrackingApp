@@ -35,6 +35,7 @@ export class LoginComponent {
     .subscribe({
       next: (response) => {
         if(response) {
+          this.userService.username = username;
           this.router.navigate(['/projects'])
         } else {
           alert("Authentication Failed, user did not log in");
