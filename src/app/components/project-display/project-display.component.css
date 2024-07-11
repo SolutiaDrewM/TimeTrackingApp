@@ -1,0 +1,31 @@
+.project-display {
+    display: flex;
+    align-items: left;
+    justify-content: space-between;
+    flex-direction: column;
+    background-color: #81818151;
+    border-radius: 10px;
+    min-height: calc(64vh + 2rem);
+    padding: 1rem;
+}
+
+.project-title {
+    padding-bottom: 1rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+p {
+    font-size: 1.5rem;
+}
+
+.project-actions {
+    display: flex;
+    justify-content: space-evenly;
+}

@@ -21,6 +21,10 @@ export class ProjectService {
     );
   }
 
+  getProjectByTitle(title: string): Observable<Project> {
+    return this.http.get<Project>(`${this.apiUrl}/title/${title}`);
+  }
+
   addProject(project: Project): Observable<Project> {
     //post to database
     return this.http.post<Project>(this.apiUrl, project);

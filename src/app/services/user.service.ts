@@ -67,9 +67,7 @@ export class UserService {
   }
 
   getUser(username: string) {
-    console.log("Getting user!");
     this.http.get<User>(`${this.apiUrl}/login/${username}`).subscribe(user => {
-      console.log(user)
       this.userSubject.next(user)
     })
   }

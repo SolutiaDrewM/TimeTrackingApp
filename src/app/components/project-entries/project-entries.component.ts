@@ -40,7 +40,6 @@ export class ProjectEntriesComponent {
   user$ = this.userService.userSubject.asObservable();
 
   constructor(
-    private timeEntryService: TimeEntryService,
     private userService: UserService,
     private router: Router,
     public dialog: MatDialog
