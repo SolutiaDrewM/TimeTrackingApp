@@ -23,10 +23,10 @@
                 <ng-container matColumnDef="actions">
                     <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
                     <mat-cell *matCellDef="let entry">
-                        <button mat-icon-button (click)="openUpdateDialog(entry)">
+                        <button mat-icon-button *ngIf="userIsAdmin()" (click)="openUpdateDialog(entry)">
                             <mat-icon>edit</mat-icon>
                         </button>
-                        <button mat-icon-button (click)="deleteEntry(entry)">
+                        <button mat-icon-button *ngIf="userIsAdmin()" (click)="deleteEntry(entry)">
                             <mat-icon>delete</mat-icon>
                         </button>
                     </mat-cell>
