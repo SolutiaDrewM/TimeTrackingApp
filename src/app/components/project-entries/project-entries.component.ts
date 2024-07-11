@@ -9,7 +9,9 @@ import { FormattedButtonComponent } from '../formatted-button/formatted-button.c
 import { Router, RouterModule } from '@angular/router';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { UpdateDialogComponent } from '../update-dialog/update-dialog.component';
-import { Title } from '@angular/platform-browser';
+import { UserService } from '../../services/user.service';
+import { NgIf } from '@angular/common';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-project-entries',
@@ -23,7 +25,8 @@ import { Title } from '@angular/platform-browser';
     MatDialogModule,
     FormattedButtonComponent,
     UpdateDialogComponent,
-    RouterModule
+    RouterModule,
+    NgIf,
     ],
   templateUrl: './project-entries.component.html',
   styleUrl: './project-entries.component.css'
@@ -34,9 +37,11 @@ export class ProjectEntriesComponent {
   @Output() deleteEntryEvent = new EventEmitter<TimeEntry>();
   @Output() updateEntryEvent = new EventEmitter<TimeEntry>();
   displayedColumns: string[] = ['username', 'hours', 'actions'];
+  user$ = this.userService.userSubject.asObservable();
 
   constructor(
     private timeEntryService: TimeEntryService,
+    private userService: UserService,
     private router: Router,
     public dialog: MatDialog
   ) {}
@@ -61,6 +66,12 @@ export class ProjectEntriesComponent {
         this.updateEntryEvent.emit(updatedEntry);
       }
     })
+  }
+
+  userIsAdmin(): boolean {
+    let adminUser:  boolean = false;
+    this.user$.subscribe(u => adminUser = (u.role.type === "admin"));
+    return adminUser;
   }
 
   updateEntry(entry: TimeEntry) {

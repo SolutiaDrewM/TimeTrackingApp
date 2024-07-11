@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { FormattedButtonComponent } from '../formatted-button/formatted-button.component';
 import { TimeEntryService } from '../../services/time-entry.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-time-input',
@@ -38,6 +39,7 @@ export class TimeInputComponent {
   constructor(
     private projectService: ProjectService,
     private timeEntryService: TimeEntryService,
+    private userService: UserService,
     private fb: FormBuilder) {}
 
   ngOnInit() {
@@ -67,7 +69,7 @@ export class TimeInputComponent {
     this.timeEntryService.addEntry(
       form.title,
       form.task,
-      1, // Just assigning it to admin for now until I add roles 
+      this.userService.User.userId, 
       form.hours
     ).subscribe({
       next: () => {

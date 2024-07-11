@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, ObservedValueOf, tap } from 'rxjs';
+import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -9,9 +10,24 @@ export class UserService {
 
   private apiUrl = 'https://localhost:44338/api/User'
 
-  private isLoggedIn: boolean = false;
+  //private isLoggedIn: boolean = false;
   public username: string = "";
-  public role: string = ""
+  public User: User = 
+  {
+    userId: 0,
+    username: '',
+    password: '',
+    roleId: 0,
+    role: {
+      roleId: 0,
+      type: ''
+    }
+  };
+  public role: string = "";
+
+  
+  public userSubject = new BehaviorSubject<User>(this.User);
+  public user$ = this.userSubject.asObservable();
 
   
   constructor(private http: HttpClient) {
@@ -20,6 +36,7 @@ export class UserService {
     }
     this.logout();
   }
+
 
   //May not actually need this but well see
   getIsLoggedIn(): boolean {
@@ -37,18 +54,31 @@ export class UserService {
     return isLoggedIn;
   }
 
+  //Toggle our private isLoggedIn value
   setIsLoggedIn(isLoggedIn: boolean){
-    
     localStorage.setItem('isLoggedIn', `${isLoggedIn}`);
   }
 
-  //For now it just needs to tell me if the username and password are valid
-  //TODO Add output from here or another function defining user role
-  //TODO Maybe seperate authenticate and login into seperate functions
-  authenticate(username: string, password: string) {
+  //Authenticates if the username and password are valid
+  authenticate(username: string, password: string): Observable<boolean> {
     return this.http.post<boolean>(`${this.apiUrl}/authenticate`, { username, password }).pipe(
       tap(response => this.setIsLoggedIn(response))
     );
+  }
+
+  getUser(username: string) {
+    console.log("Getting user!");
+    this.http.get<User>(`${this.apiUrl}/login/${username}`).subscribe(user => {
+      console.log(user)
+      this.userSubject.next(user)
+    })
+  }
+
+  //Checks role based on username
+  getRole(username: string): Observable<string> {
+    return this.http.post<string>(`${this.apiUrl}/role`, username).pipe(
+      tap(role => console.log(role))
+    )
   }
 
   logout(): void {
