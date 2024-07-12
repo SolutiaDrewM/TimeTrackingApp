@@ -8,7 +8,7 @@ html, body { height: 100%;  overflow: hidden; min-width: 600px;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
-input[type="text"], textarea {
+input[type="text"], input[type="password"], textarea {
     background-color: #9C52E521;
     color: #000000;
     width: 100%;
@@ -28,6 +28,6 @@ input[type="text"]:focus {
     background-color: #6819b721;
 }
 
-input[type="text"]:hover, textarea:hover {
+input[type="text"]:hover, textarea:hover, input[type="password"]:hover {
     background-color: #7c14c150;
 }
