@@ -1,47 +1,95 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SelectedProjectService } from '../../services/selected-project.service';
 import { ProjectService } from '../../services/project.service';
 import { FormattedButtonComponent } from '../formatted-button/formatted-button.component';
+import { Project } from '../../interfaces/project';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { UpdateProjectDialogComponent } from '../update-project-dialog/update-project-dialog.component';
+import { CreateProjectComponent } from '../create-project/create-project.component';
 
 @Component({
   selector: 'app-project-display',
   standalone: true,
   imports: [
-    FormattedButtonComponent
+    FormattedButtonComponent,
+    MatDialogModule,
+    UpdateProjectDialogComponent,
   ],
   templateUrl: './project-display.component.html',
   styleUrl: './project-display.component.css'
 })
 export class ProjectDisplayComponent {
 
-  selectedProjectTitle: string | null = null;
+  @Input() project: Project = {
+    projectId: 0,
+    title: "",
+    description: "",
+    totalHours: 0,
+  };
 
-  projectTitle: string = "";
-  projectDescription: string = "";
-  projectTotalHours: number = 0;
+  @Output() updateProjectEvent = new EventEmitter<Project>();
+  @Output() deleteProjectEvent = new EventEmitter<Project>();
+  @Output() createProjectEvent = new EventEmitter<Project>();
+
+
+  selectedProjectTitle: string | null = null;
 
   constructor(
     private selectedProjectService: SelectedProjectService,
-    private projectService: ProjectService
-  ) {}
+    private projectService: ProjectService,
+    private dialog: MatDialog
+  ) {
+
+  }
 
   ngOnInit(){
-    this.selectedProjectService.selectedProject$.subscribe(project => {
-      this.selectedProjectTitle = project;
-      if(this.selectedProjectTitle !== null) {
-        this.projectTitle = this.selectedProjectTitle;
-        this.loadProject();
+
+  }
+
+  openUpdateDialog(project: Project): void {
+    const dialogRef = this.dialog.open(UpdateProjectDialogComponent, {
+      width: '60%',
+      data: project
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        let updatedProject = {
+          projectId: project.projectId,
+          title: result.projectTitle,
+          description: result.projectDescription,
+          totalHours: result.projectTotalHours,
+        }
+        this.updateProjectEvent.emit(updatedProject);
       }
     })
   }
 
-  loadProject() {
-    this.projectService.getProjectByTitle(this.projectTitle).subscribe(
-      project => {
-        this.projectDescription = project.description;
-        this.projectTotalHours = project.totalHours
+  openCreateDialog(): void {
+    const dialogRef = this.dialog.open(CreateProjectComponent, {
+      width: '60%',
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        let createdProject = {
+          projectId: 0,
+          title: result.title,
+          description: result.description,
+          totalHours: result.totalHours,
+        }
+        this.createProjectEvent.emit(createdProject);
       }
-    )
+    })
+  }
+
+  onDelete(project: Project) {
+    console.log("Project display calls onDelete()", project);
+    this.deleteProjectEvent.emit(project);
+  }
+
+  onCreate() {
+    this.createProjectEvent.emit();
   }
 
 }

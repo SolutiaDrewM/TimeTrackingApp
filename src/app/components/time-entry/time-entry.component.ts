@@ -7,6 +7,7 @@ import { SelectedProjectService } from '../../services/selected-project.service'
 import { NgIf } from '@angular/common';
 import { TimeEntry } from '../../interfaces/time-entry';
 import { TimeEntryService } from '../../services/time-entry.service';
+import { ProjectService } from '../../services/project.service';
 
 @Component({
     selector: 'app-time-entry',
@@ -22,10 +23,12 @@ import { TimeEntryService } from '../../services/time-entry.service';
 })
 export class TimeEntryComponent implements OnInit {
     selectedProjectTitle: string | null = null;
+    projects: Project[] = [];
     dataSource: TimeEntry[] = [];
 
     constructor(
-        private selectedProjectService: SelectedProjectService, 
+        private selectedProjectService: SelectedProjectService,
+        private projectService: ProjectService,
         private timeEntryService: TimeEntryService
     ) {}
 
@@ -34,11 +37,12 @@ export class TimeEntryComponent implements OnInit {
             this.selectedProjectTitle = project;
             this.loadEntries();
         })
+        this.loadProjects();
         
     }   
     
     ngOnChanges(): void {
-        this.loadEntries
+        this.loadEntries();
     }
     
     loadEntries(): void {
@@ -47,16 +51,16 @@ export class TimeEntryComponent implements OnInit {
                 this.dataSource = entries;
             });
         }
-    
-        // if title is undefined or null, render the blank gray
-    
-        // else render the title and a table of entries
     }
     
+    loadProjects(): void {
+        this.projectService.getProjects().subscribe(projects => this.projects = projects);
+    }
+
     updateEntry(entry: TimeEntry): void {
         this.timeEntryService.updateEntry(entry).subscribe({
             next: (response) => {
-                this.loadEntries();
+                this.loadEntries(); // refresch after update
             },
             error: (error) => {
                 alert('The entry was not updated succesfully');

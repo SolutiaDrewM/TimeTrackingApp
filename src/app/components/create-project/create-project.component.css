@@ -1,23 +1,39 @@
 .create-project-container {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 90vh;
+    flex-direction: column;
+    justify-content: space-evenly;
+    min-height: 70vh;
+    padding: 1rem;
+
+}
+
+h1 {
+    color: white;
+    text-align: center;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 form {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    height: 65vh;
-    width: 60vw;
 }
 
 .field-title {
-    font-size: 2rem;
+    color: white;
 }
 
 .totalHours, .project {
     display: flex;
     justify-content: space-between;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: space-evenly;
 }

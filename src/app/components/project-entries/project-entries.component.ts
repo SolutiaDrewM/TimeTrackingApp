@@ -73,11 +73,6 @@ export class ProjectEntriesComponent {
     return adminUser;
   }
 
-  updateEntry(entry: TimeEntry) {
-    //Submiting the inputs for the update
-    console.log(entry);
-  }
-
   deleteEntry(entry: TimeEntry) {
     this.deleteEntryEvent.emit(entry);
   }

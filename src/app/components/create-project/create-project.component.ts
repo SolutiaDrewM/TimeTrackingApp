@@ -1,50 +1,49 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Inject, Output } from '@angular/core';
 import { FormGroup, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButton } from '@angular/material/button';
 import { FormattedButtonComponent } from '../formatted-button/formatted-button.component';
 import { ProjectService } from '../../services/project.service';
 import { Project } from '../../interfaces/project';
+import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
 
 @Component({
   selector: 'app-create-project',
   standalone: true,
   imports: [
-    MatButton,
     ReactiveFormsModule,
-    FormattedButtonComponent,
+    MatFormField,
+    MatInput,
+    MatLabel,
+    FormattedButtonComponent
   ],
   templateUrl: './create-project.component.html',
   styleUrl: './create-project.component.css'
 })
 export class CreateProjectComponent {
   
-  createProjectForm: FormGroup = new FormGroup<any>({});
+  createProjectForm: FormGroup;
+  @Output() updateEvent = new EventEmitter<any>();
 
-
-  constructor(private fb: FormBuilder, private projectService: ProjectService) {
-
-  }
-
-  ngOnInit() {
+  constructor(
+    private fb: FormBuilder,
+    private dialogRef: MatDialogRef<CreateProjectComponent>,
+  ) {
     this.createProjectForm = this.fb.group({
       title: ['', Validators.required],
-      totalHours: ['', [Validators.required, Validators.min(0)]],
       description: ['', Validators.required],
+      totalHours: ['', [Validators.required, Validators.min(0)]]
     })
   }
 
-  onSubmit() {
-    //Post new project to the database using project service
-    //Make the project here (id=0) and give it to the service to post
-    let project: Project = {
-      projectId: 0,
-      title: this.createProjectForm.value.title,
-      totalHours: this.createProjectForm.value.totalHours,
-      description: this.createProjectForm.value.description
-    }
+  onCancel(): void {
+    this.dialogRef.close();
+  }
 
-    this.projectService.addProject(project).subscribe(
-      project => console.log(project)
-    );
+  onSave(): void {
+    if (this.createProjectForm.valid) {
+      this.dialogRef.close(this.createProjectForm.value);
+    }
   }
 }

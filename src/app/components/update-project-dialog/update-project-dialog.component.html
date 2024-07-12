@@ -1,1 +1,23 @@
-<p>update-project-dialog works!</p>
+<div class="dialog-container">
+    <h1 mat-dialog-title>Update Project Information</h1>
+    <div mat-dialog-content>
+        <form [formGroup]="updateProjectForm">
+            <mat-form-field appearance="fill">
+                <mat-label>Project Title: </mat-label>
+                <input matInput formControlName="projectTitle">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Project Description: </mat-label>
+                <textarea matInput formControlName="projectDescription"></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Total Hours Spent: </mat-label>
+                <input matInput formControlName="projectTotalHours">
+            </mat-form-field>
+        </form>
+    </div>
+    <div mat-dialog-actions class="action-buttons">
+        <app-formatted-button (buttonClick)="onCancel()">Cancel</app-formatted-button>
+        <app-formatted-button (buttonClick)="onSave()">Save</app-formatted-button>
+    </div>
+</div>

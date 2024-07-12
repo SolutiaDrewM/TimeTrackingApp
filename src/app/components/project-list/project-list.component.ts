@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ProjectItemComponent } from '../project-item/project-item.component';
 import { Project } from '../../interfaces/project';
 import { ProjectService } from '../../services/project.service';
@@ -12,15 +12,8 @@ import { NgFor, NgForOf } from '@angular/common';
   styleUrl: './project-list.component.css'
 })
 export class ProjectListComponent {
-  projects: Project[] = [];
+  @Input() projects: Project[] = [];
 
   constructor(private projectService: ProjectService) {}
 
-  ngOnInit() {
-    this.getProjects();
-  }
-
-  getProjects() {
-    return this.projectService.getProjects().subscribe(projects => this.projects = projects);
-  }
 }

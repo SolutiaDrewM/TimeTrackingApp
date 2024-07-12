@@ -1,20 +1,23 @@
 <div class="create-project-container">
-    <!--Time Input Form-->
-    <form [formGroup]="createProjectForm" (ngSubmit)="onSubmit()">
-        <h1>Create New Project</h1>
-        <div class="project">
-            <label for="title" class="field-title">Project: </label>
-            <input type="text" placeholder="Enter a title for your project" formControlName="title"/>
-        </div>
-        <div class="totalHours">
-            <label for="totalHours" class="field-title">Time to complete: </label>
-            <input type="text" placeholder="How many total hours?" formControlName="totalHours"/>
-        </div>
-        <div class="description">
-            <label for="description" class="field-title">Description: </label>
-            <textarea type="text" placeholder="Enter a description of the project here" formControlName="description"></textarea>
-        </div>
-
-        <app-formatted-button [disabled]="createProjectForm.invalid">Create New Project</app-formatted-button>
-    </form>
+    <h1 mat-dialog-title>Create New Project</h1>
+    <div mat-dialog-content class="form-container">
+        <form [formGroup]="createProjectForm">
+            <mat-form-field appearance="fill" class="project">
+                <mat-label for="title" class="field-title">Project: </mat-label>
+                <input matInput placeholder="Enter a title for your project" formControlName="title"/>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="totalHours">
+                <mat-label for="totalHours" class="field-title">Time to complete: </mat-label>
+                <input matInput placeholder="How many total hours?" formControlName="totalHours"/>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="description">
+                <mat-label for="description" class="field-title">Description: </mat-label>
+                <textarea matInput placeholder="Enter a description of the project here" formControlName="description"></textarea>
+            </mat-form-field>
+        </form>
+    </div>
+    <div mat-dialog-actions class="action-buttons">
+        <app-formatted-button [disabled]="createProjectForm.invalid" (buttonClick)="onSave()">Save</app-formatted-button>
+        <app-formatted-button (buttonClick)="onCancel()">Cancel</app-formatted-button>
+    </div>
 </div>

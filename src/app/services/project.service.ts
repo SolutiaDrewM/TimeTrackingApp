@@ -30,11 +30,11 @@ export class ProjectService {
     return this.http.post<Project>(this.apiUrl, project);
   }
 
-  updateProject(project: Project) {
-    return null;
+  updateProject(project: Project): Observable<Project> {
+    return this.http.put<Project>(this.apiUrl, project);
   }
   
-  deleteProject(project: Project) {
-    //return this.http.delete<Project>(this.apiUrl, project.projectId);
+  deleteProject(projectId: number): Observable<any> {
+    return this.http.delete<Project>(`${this.apiUrl}/${projectId}`);
   }
 }
