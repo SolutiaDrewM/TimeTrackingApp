@@ -3,7 +3,17 @@
     <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
         <div class="project">
             <div class="project-title"><label for="autocomplete">Project: </label></div>
+            
             <div class="input-wrapper">
+                <mat-form-field>
+                    <mat-select placeholder="Title of project" formControlName="projectTitle">
+                        <mat-option *ngFor="let title of projectTitles" [value]="title">
+                            {{ title }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <!--
                 <input type="text" 
                     id="autocomplete" 
                     name="autocomplete" 
@@ -19,15 +29,21 @@
                 <div *ngFor="let option of filteredTitles" (click)="selectOption(option)">
                     {{ option }}
                 </div>
+                -->
             </div>
+            
         </div>
         <div class="task-completed">
             <div class="task-title">Task Completed: </div>
-            <input type="text" placeholder="What task did you complete?" formControlName="task"/>
+            <input type="text" placeholder="What task did you complete?" formControlName="taskTitle"/>
         </div>
         <div class="time-dedicated">
             <div class="time-title">Time Dedicated: </div>
             <input type="text" placeholder="How many hours did you put into the task?" formControlName="hours"/>
+        </div>
+        <div class="task-description">
+            <div class="task-title">Task Description: </div>
+            <textarea placeholder="Describe the task" formControlName="description"></textarea>
         </div>
         <app-formatted-button [disabled]="taskForm.invalid">Submit</app-formatted-button>
     </form>

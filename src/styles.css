@@ -28,6 +28,6 @@ input[type="text"]:focus {
     background-color: #6819b721;
 }
 
-input[type="text"]:hover {
+input[type="text"]:hover, textarea:hover {
     background-color: #7c14c150;
 }

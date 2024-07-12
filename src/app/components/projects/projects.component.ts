@@ -22,6 +22,7 @@ export class ProjectsComponent implements OnInit{
 
     projects: Project[] = [];
     selectedProjectTitle: string | null = null;
+    noProjectSelected: boolean = true;
     project: Project = {
         projectId: 0,
         title: '',
@@ -39,10 +40,13 @@ export class ProjectsComponent implements OnInit{
         this.loadProjects();
         this.selectedProjectService.selectedProject$.subscribe(projectTitle => {
             this.selectedProjectTitle = projectTitle;
-            console.log("Selected Project Title:",this.selectedProjectTitle)
             if(this.selectedProjectTitle !== null) {
                 this.project.title = this.selectedProjectTitle;
+                this.noProjectSelected = false;
                 this.loadProject();
+            } else {
+                this.project.title = "Please select a project"
+                this.project.totalHours = 999;
             }
         })
     }
@@ -59,7 +63,6 @@ export class ProjectsComponent implements OnInit{
     }
 
     createProject(project: Project) {
-        console.log("Trying to create project", project);
         this.projectService.addProject(project).subscribe({
             next: (response) => {
                 this.loadProjects(); // refresh after update

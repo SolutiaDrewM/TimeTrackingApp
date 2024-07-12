@@ -12,3 +12,13 @@
 .formatted-button:hover {
     background-color: #9C52E560;
 }
+
+button:disabled,
+button[disabled] {
+    background-color: rgb(88, 88, 88);
+}
+
+button:disabled:hover,
+button[disabled]:hover {
+    background-color: rgb(88, 88, 88);
+}

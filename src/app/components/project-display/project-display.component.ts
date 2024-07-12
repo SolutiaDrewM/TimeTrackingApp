@@ -6,6 +6,7 @@ import { Project } from '../../interfaces/project';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { UpdateProjectDialogComponent } from '../update-project-dialog/update-project-dialog.component';
 import { CreateProjectComponent } from '../create-project/create-project.component';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-project-display',
@@ -33,10 +34,12 @@ export class ProjectDisplayComponent {
 
 
   selectedProjectTitle: string | null = null;
+  user$ = this.userService.userSubject.asObservable();
 
   constructor(
     private selectedProjectService: SelectedProjectService,
     private projectService: ProjectService,
+    private userService: UserService,
     private dialog: MatDialog
   ) {
 
@@ -44,6 +47,12 @@ export class ProjectDisplayComponent {
 
   ngOnInit(){
 
+  }
+
+  userIsAdmin(): boolean {
+    let adminUser: boolean = false;
+    this.user$.subscribe(u => adminUser = (u.role.type === "admin"));
+    return adminUser;
   }
 
   openUpdateDialog(project: Project): void {
@@ -84,7 +93,6 @@ export class ProjectDisplayComponent {
   }
 
   onDelete(project: Project) {
-    console.log("Project display calls onDelete()", project);
     this.deleteProjectEvent.emit(project);
   }
 

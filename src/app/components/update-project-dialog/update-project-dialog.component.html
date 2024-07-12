@@ -18,6 +18,6 @@
     </div>
     <div mat-dialog-actions class="action-buttons">
         <app-formatted-button (buttonClick)="onCancel()">Cancel</app-formatted-button>
-        <app-formatted-button (buttonClick)="onSave()">Save</app-formatted-button>
+        <app-formatted-button [disabled]="updateProjectForm.invalid" (buttonClick)="onSave()">Save</app-formatted-button>
     </div>
 </div>

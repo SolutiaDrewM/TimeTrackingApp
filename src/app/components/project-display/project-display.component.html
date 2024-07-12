@@ -12,8 +12,8 @@
     </div>
     
     <div class="project-actions">
-        <app-formatted-button (buttonClick)="openUpdateDialog(project)" >Update</app-formatted-button>
-        <app-formatted-button (buttonClick)="onDelete(project)" >Delete</app-formatted-button>
-        <app-formatted-button (buttonClick)="openCreateDialog()" >Create</app-formatted-button>
+        <app-formatted-button [disabled]="!userIsAdmin() || project.projectId === 0" (buttonClick)="openUpdateDialog(project)" >Update</app-formatted-button>
+        <app-formatted-button [disabled]="!userIsAdmin() || project.projectId === 0" (buttonClick)="onDelete(project)" >Delete</app-formatted-button>
+        <app-formatted-button [disabled]="!userIsAdmin() || project.projectId === 0" (buttonClick)="openCreateDialog()" >Create</app-formatted-button>
     </div>
 </div>

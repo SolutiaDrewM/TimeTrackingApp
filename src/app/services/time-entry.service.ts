@@ -36,7 +36,7 @@ export class TimeEntryService {
   }
 
   //TODO Add in description
-  addEntry(projectTitle: string, title: string, userId: number, hours: number): Observable<TimeEntry> {
+  addEntry(projectTitle: string, title: string, userId: number, hours: number, description: string): Observable<TimeEntry> {
     return this.getProjectByTitle(projectTitle).pipe(
       map(project => project.projectId),
       switchMap(projectId => {
@@ -45,7 +45,7 @@ export class TimeEntryService {
           projectId: projectId,
           userId: userId,
           title: title,
-          description: "",
+          description: description,
           hours: hours,
           User: null
         };
