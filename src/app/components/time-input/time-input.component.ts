@@ -34,6 +34,7 @@ export class TimeInputComponent {
   dropdownVisible: boolean = false;
 
   projectTitle: string = '';
+  user$ = this.userService.userSubject.asObservable();
 
 
   constructor(
@@ -66,10 +67,12 @@ export class TimeInputComponent {
 
   onSubmit(): void {
     let form = this.taskForm.value;
+    let userId: number = 0;
+    this.user$.subscribe(u => userId = u.userId);
     this.timeEntryService.addEntry(
       form.title,
       form.task,
-      this.userService.User.userId, 
+      userId, 
       form.hours
     ).subscribe({
       next: () => {

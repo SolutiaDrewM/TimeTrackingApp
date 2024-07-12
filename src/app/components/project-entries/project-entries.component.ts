@@ -40,7 +40,6 @@ export class ProjectEntriesComponent {
   user$ = this.userService.userSubject.asObservable();
 
   constructor(
-    private timeEntryService: TimeEntryService,
     private userService: UserService,
     private router: Router,
     public dialog: MatDialog
@@ -72,11 +71,6 @@ export class ProjectEntriesComponent {
     let adminUser:  boolean = false;
     this.user$.subscribe(u => adminUser = (u.role.type === "admin"));
     return adminUser;
-  }
-
-  updateEntry(entry: TimeEntry) {
-    //Submiting the inputs for the update
-    console.log(entry);
   }
 
   deleteEntry(entry: TimeEntry) {

@@ -1,0 +1,19 @@
+<div class="project-display">
+    <div class="project-info">
+        <div class="project-title">
+            <h2>{{project.title}}</h2>
+        </div>
+        <div class="project-hours">
+            <h3>{{project.totalHours}}</h3>
+        </div>
+        <div class="project-description">
+            <p>{{project.description}}</p>
+        </div>
+    </div>
+    
+    <div class="project-actions">
+        <app-formatted-button (buttonClick)="openUpdateDialog(project)" >Update</app-formatted-button>
+        <app-formatted-button (buttonClick)="onDelete(project)" >Delete</app-formatted-button>
+        <app-formatted-button (buttonClick)="openCreateDialog()" >Create</app-formatted-button>
+    </div>
+</div>

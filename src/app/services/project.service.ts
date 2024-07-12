@@ -21,16 +21,20 @@ export class ProjectService {
     );
   }
 
+  getProjectByTitle(title: string): Observable<Project> {
+    return this.http.get<Project>(`${this.apiUrl}/title/${title}`);
+  }
+
   addProject(project: Project): Observable<Project> {
     //post to database
     return this.http.post<Project>(this.apiUrl, project);
   }
 
-  updateProject(project: Project) {
-    return null;
+  updateProject(project: Project): Observable<Project> {
+    return this.http.put<Project>(this.apiUrl, project);
   }
   
-  deleteProject(project: Project) {
-    //return this.http.delete<Project>(this.apiUrl, project.projectId);
+  deleteProject(projectId: number): Observable<any> {
+    return this.http.delete<Project>(`${this.apiUrl}/${projectId}`);
   }
 }

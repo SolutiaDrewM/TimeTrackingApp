@@ -1,9 +1,14 @@
 <div class="project-page-container">
     <div class="project-list-container">
-        <app-project-list></app-project-list>
+        <app-project-list [projects]="projects"></app-project-list>
     </div>
-    <div class="create-project-container">
-        <app-create-project></app-create-project>
+    <div class="project-display-container">
+        <app-project-display
+        [project]="project"
+        (createProjectEvent)="createProject($event)"
+        (updateProjectEvent)="updateProject($event)"
+        (deleteProjectEvent)="deleteProject($event)"
+        ></app-project-display>
     </div>
 </div>
 
